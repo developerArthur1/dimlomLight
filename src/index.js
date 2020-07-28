@@ -5,6 +5,7 @@ import sendForm from './modules/sendForm';
 import maskName from './modules/maskName';
 import accordion from './modules/accordion';
 import calc from './modules/calc';
+import popupCall from './modules/popupCall';
 
 // маска номера телефона
 maskPhone('.phone-user', '+_________');

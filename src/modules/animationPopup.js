@@ -1,6 +1,6 @@
 'use strict';
 
-const animationPopup = (selector, typeOfDisplay = 'block') => {
+const animationPopup = (selector, typeOfDisplay = 'block', speed = 0.01) => {
     const elem = document.querySelector(selector);
     let opacity = 0;
 
@@ -10,7 +10,7 @@ const animationPopup = (selector, typeOfDisplay = 'block') => {
     let interval = setInterval(() => {
         if (opacity <= 1)
         {
-            opacity += 0.01; 
+            opacity += speed; 
             elem.style.opacity = opacity;        
         }
         else
@@ -18,6 +18,6 @@ const animationPopup = (selector, typeOfDisplay = 'block') => {
             clearInterval(interval);
         }
     }, 1);
-}
+};
 
 export default animationPopup;

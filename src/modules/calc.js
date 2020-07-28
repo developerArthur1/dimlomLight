@@ -2,7 +2,19 @@
 
 import animationPopup from './animationPopup';
 
-const calc = () => {
+const calc = (event) => {
+    const firstCheckbox = document.querySelector('.onoffswitch'),
+          inputFirstCheckbox = document.getElementById('myonoffswitch'),
+          secondWellBlock = document.querySelector('.second-well');
+
+        
+          firstCheckbox.addEventListener('click', () => {
+            inputFirstCheckbox.checked = !inputFirstCheckbox.checked;
+            secondWellBlock.classList.toggle('d-none');
+        });
+    
+    
+
     const sendForm = () => {
         const form = document.getElementById(`accordForm`),
               formPopup = document.getElementById('calc-form'),
@@ -63,7 +75,6 @@ const calc = () => {
             };
     
             const submit = () => {
-                event.preventDefault();
                 statusMessage.textContent = '';
                 formPopup.appendChild(statusMessage);
                 formPopup.appendChild(preloader);
@@ -85,8 +96,19 @@ const calc = () => {
                 });
 
                 allCalcSelect.forEach((val) => {
-                    body.calc[i] = val.value;
-                    i++;
+                    if (val.classList.contains('second-well'))
+                    {
+                        if (!inputFirstCheckbox.checked)
+                        {
+                            body.calc[i] = val.value;
+                            i++; 
+                        }
+                    }
+                    else
+                    {
+                        body.calc[i] = val.value;
+                        i++;    
+                    }
                 });
 
                 allCalcInput.forEach((val) => {
@@ -150,13 +172,6 @@ const calc = () => {
           popup = document.querySelector('.popup-discount'),
           accordionBlock = document.getElementById('accord'),
           accordInputs = accordionBlock.querySelectorAll('input');
-
-    //   let checkboxValue,
-    //       diametrValue,
-    //       ringsValue,
-    //       checkboxBottomValue,
-    //       secondDiametrValue,
-    //       secondRingsValue;
 
     document.addEventListener('click', (event) => {
         const target = event.target;
