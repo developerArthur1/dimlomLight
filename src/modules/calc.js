@@ -51,6 +51,10 @@ const calc = (event) => {
                   statusMessage.style.cssText = 'font-size: 2rem; color: black;';
               }
               styleMessage();
+
+                statusMessage.textContent = '';
+                statusMessage.id = "status-message";
+                formPopup.appendChild(statusMessage);
     
         const postData = (body, outputData, errorData) => {
             const request = new XMLHttpRequest();
@@ -75,8 +79,6 @@ const calc = (event) => {
             };
     
             const submit = () => {
-                statusMessage.textContent = '';
-                formPopup.appendChild(statusMessage);
                 formPopup.appendChild(preloader);
         
                 const popupData = new FormData(formPopup);
@@ -160,7 +162,7 @@ const calc = (event) => {
         };
     
     };
-
+    sendForm();
 
     const onoffswitchСheckbox = document.querySelector('.onoffswitch-checkbox'),
           diametr = document.querySelector('.diametr'),
@@ -195,9 +197,11 @@ const calc = (event) => {
 
             sum += secondDiametrValue + secondRingsValue;
             calcResult.value = `${sum} рублей`;
-
+            
+            const popup = document.getElementById('calc-form'),
+                  statusMessage = popup.querySelector('#status-message');
+                  statusMessage.textContent = '';
             animationPopup('.popup-discount', 'block');
-            sendForm();
         }
         
         if ((!target.closest('.capture-form') || target.matches('.popup-close')) && !target.matches('.call-btn'))

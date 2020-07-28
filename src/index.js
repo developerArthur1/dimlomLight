@@ -7,6 +7,7 @@ import accordion from './modules/accordion';
 import calc from './modules/calc';
 import popupCall from './modules/popupCall';
 import btnMore from './modules/btnMore';
+import popupDiscount from './modules/popupDiscount';
 
 // маска номера телефона
 maskPhone('.phone-user', '+_________');
@@ -24,3 +25,5 @@ calc();
 popupCall();
 // кнопка "Больше"
 btnMore();
+// открытие модалки при клике на кнопкки
+popupDiscount();

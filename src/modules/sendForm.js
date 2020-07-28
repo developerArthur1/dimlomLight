@@ -77,7 +77,7 @@ const sendForm = (index) => {
             };
     
             const check = () => {
-                if (index === 'capture')
+                if (index === 2)
                 {
                     if (isEmpty(body) === 2)
                     {
