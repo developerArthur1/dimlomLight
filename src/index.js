@@ -3,6 +3,7 @@
 import maskPhone from './modules/maskPhone';
 import sendForm from './modules/sendForm';
 import maskName from './modules/maskName';
+import accordion from './modules/accordion';
 
 // маска номера телефона
 maskPhone('.phone-user', '+_________');
@@ -12,3 +13,5 @@ maskName();
 sendForm(1);
 sendForm(2);
 sendForm(3);
+// аккордеон
+accordion('.panel-heading', '.panel-body');

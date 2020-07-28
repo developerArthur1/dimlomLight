@@ -2,7 +2,6 @@
 
 const sendForm = (index) => {
     const form = document.getElementById(`form${index}`);
-    console.log(`form${index}: `, form);
          const btnSubmit = form.querySelector('button'),
           statusMessage = document.createElement('form'),
           successMessage = 'Успешно! С вами скоро свяжутся',
