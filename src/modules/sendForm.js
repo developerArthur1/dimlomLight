@@ -1,9 +1,9 @@
 'use strict';
 
 const sendForm = (index) => {
-    const form = document.getElementById(`feedback${index}`),
-          btnSubmit = form.querySelector('button'),
-          checkbox = form.querySelector('.checkbox__label'),
+    const form = document.getElementById(`form${index}`);
+    console.log(`form${index}: `, form);
+         const btnSubmit = form.querySelector('button'),
           statusMessage = document.createElement('form'),
           successMessage = 'Успешно! С вами скоро свяжутся',
           errorMessage = 'Что-то пошло не так';
@@ -31,14 +31,7 @@ const sendForm = (index) => {
         createPreloader();
 
           function styleMessage () {
-            if (index === 1 || index === 3)
-            {
-              statusMessage.style.cssText = 'font-size: 1rem; color: black;';
-            }
-            else
-            {
-              statusMessage.style.cssText = 'font-size: 2rem; color: white;';
-            }  
+              statusMessage.style.cssText = 'font-size: 2rem; color: black;';
           }
           styleMessage();
 
@@ -85,61 +78,38 @@ const sendForm = (index) => {
             };
     
             const check = () => {
-                if (index !== 1 && index !== 3)
+                if (index === 'capture')
                 {
-                    if (isEmpty(body) === 2 && checkbox.classList.contains('active'))
+                    if (isEmpty(body) === 2)
                     {
                         preloader.classList.remove('d-none');
-                        checkbox.classList.remove('active');
                         form.reset();
                         postData(body, () => {preloader.classList.add('d-none'); statusMessage.textContent = successMessage;},
                         (error) => {statusMessage.textContent = errorMessage; preloader.classList.add('d-none'); console.log(error);});    
                     }
-                    else if (isEmpty(body) === 1 && !checkbox.classList.contains('active'))
-                    {
-                        statusMessage.textContent = 'Вы заполнили не все поля и не поставили галочку';
-                    }
-                    else if (isEmpty(body) === 1 && checkbox.classList.contains('active'))
+                    else if (isEmpty(body) === 1)
                     {
                         statusMessage.textContent = 'Вы заполнили не все поля, повторите попытку';
                     }
-                    else if (isEmpty(body) && !checkbox.classList.contains('active'))
-                    {
-                        statusMessage.textContent = 'Вы не поставили галочку, повторите попытку';
-                    }
-                    else if (!isEmpty(body) && checkbox.classList.contains('active'))
+                    else if (!isEmpty(body))
                     {
                         statusMessage.textContent = 'Вы не заполнили поля, повторите попытку';
-                    }
-                    else if (!isEmpty(body) && !checkbox.classList.contains('active'))
-                    {
-                        statusMessage.textContent = 'Вы не заполнили поля и не поставили галочку, повторите попытку';
                     }
                 }
                 else
                 {
-                    if (isEmpty(body) && checkbox.classList.contains('active'))
+                    if (isEmpty(body))
                     {
                         preloader.classList.remove('d-none');
                         form.reset();
-                        checkbox.classList.remove('active');
                         postData(body, () => {preloader.classList.add('d-none'); statusMessage.textContent = successMessage;},
                         (error) => {statusMessage.textContent = errorMessage; preloader.classList.add('d-none'); console.log(error);});    
                     }
-                    else if (isEmpty(body) && !checkbox.classList.contains('active'))
+                    else if (!isEmpty(body))
                     {
-                        statusMessage.textContent = 'Вы не поставили галочку';
-                    }
-                    else if (!isEmpty(body) && checkbox.classList.contains('active'))
-                    {
-                        statusMessage.textContent = 'Вы не ввели номер телефона';
-                    }
-                    else if (!isEmpty(body) && !checkbox.classList.contains('active'))
-                    {
-                        statusMessage.textContent = 'Вы не ввели номер телефона и не поставили галочку';
+                        statusMessage.textContent = 'Вы не ввели данные';
                     }
                 };    
-    
             };
             check();
     };
@@ -150,11 +120,6 @@ const sendForm = (index) => {
         if (target.matches('button'))
         {
             submit();
-        }
-
-        if (target.matches('.checkbox__label'))
-        {
-            checkbox.classList.toggle('active');
         }
     });
 
