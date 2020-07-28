@@ -1,6 +1,6 @@
 'use strict';
 
-const animationPopup = (selector, typeOfDisplay) => {
+const animationPopup = (selector, typeOfDisplay = 'block') => {
     const elem = document.querySelector(selector);
     let opacity = 0;
 

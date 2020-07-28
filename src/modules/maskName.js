@@ -4,7 +4,7 @@ const maskName = (selector) => {
     document.addEventListener('input', () => {
         const target = event.target;
     
-        if (target.matches('#name_2'))
+        if (target.placeholder === 'Ваше имя')
         {
             target.value = target.value.replace(/[^а-яА-ЯёЁ\s]+$/, '');
         }

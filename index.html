@@ -125,7 +125,8 @@
 
 <section class="constructor">
     <div class="container">
-        <div class="row">
+        <div class="row" id="accord">
+            <form id="accordForm">
             <h2>Онлайн конструктор септика</h2>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -175,14 +176,14 @@
                                 <div class="title-text">первый колодец (приемный)</div>
                                 <div class="select-box">
                                     <p><strong>Диаметр</strong></p>
-                                    <select class="form-control expand">
+                                    <select class="form-control expand diametr">
                                         <option>1.4 метра</option>
                                         <option>2 метра</option>
                                     </select>
                                 </div>
                                 <div class="select-box">
                                     <p><strong>Количество колец</strong></p>
-                                    <select class="form-control expand">
+                                    <select class="form-control expand rings">
                                         <option>1 штука</option>
                                         <option>2 штуки</option>
                                         <option>3 штуки</option>
@@ -192,14 +193,14 @@
                                 <div class="title-text">второй колодец (дренажный)</div>
                                 <div class="select-box">
                                     <p><strong>Диаметр</strong></p>
-                                    <select class="form-control expand">
+                                    <select class="form-control expand second-diametr">
                                         <option>1.4 метра</option>
                                         <option>2 метра</option>
                                     </select>
                                 </div>
                                 <div class="select-box">
                                     <p><strong>Количество колец</strong></p>
-                                    <select class="form-control expand">
+                                    <select class="form-control expand second-rings">
                                         <option>1 штука</option>
                                         <option>2 штуки</option>
                                         <option>3 штуки</option>
@@ -226,7 +227,7 @@
                                 </p>
 
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch-two" class="onoffswitch-checkbox"
+                                    <input type="checkbox" name="onoffswitch-two" class="onoffswitch-checkbox bottom"
                                            id="myonoffswitch-two" checked>
                                     <label class="onoffswitch-label" for="myonoffswitch-two">
                                         <span class="onoffswitch-inner"></span>
@@ -266,6 +267,7 @@
                 <input id="calc-result" type="text" placeholder="примерная стоимость" disabled>
             </div>
 
+        </form>
         </div>
     </div>
 </section>
@@ -505,7 +507,7 @@
     <div class="popup-dialog">
         <div class="popup-content">
             <!-- <div class="popup-form"> -->
-            <form class="capture-form text-center">
+            <form class="capture-form text-center" id="calc-form">
                 <span class="circle"><button class="popup-close">&times;</button></span>
                 <label for="name_11">Как к вам обращаться</label>
                 <input type="text" id="name_11" name="user_name" placeholder="Ваше имя" required>
