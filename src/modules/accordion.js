@@ -2,10 +2,10 @@
 
 const accordion = (accHead, accBody) => {
     document.addEventListener('click', (event) => {
-        event.preventDefault();
 
         if (event.target.closest('.panel-heading'))
         {
+            event.preventDefault();
             const accordionContents = document.querySelectorAll(`${accBody}`),
                   thisParent = event.target.closest('.panel'),
                   thisBody = thisParent.querySelector(`${accBody}`),
@@ -36,6 +36,7 @@ const accordion = (accHead, accBody) => {
         }
         else if (event.target.closest('.construct-btn') && !event.target.classList.contains('call-btn'))
         {
+            event.preventDefault();
             const target = event.target.closest('.construct-btn'),
                   href = target.getAttribute('href').substring(1),
                   nextBlock = document.getElementById(href);
