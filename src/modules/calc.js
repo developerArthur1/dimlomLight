@@ -79,6 +79,7 @@ const calc = (event) => {
             };
     
             const submit = () => {
+                statusMessage.textContent = '';
                 formPopup.appendChild(preloader);
         
                 const popupData = new FormData(formPopup);

@@ -16,8 +16,8 @@ maskPhone('.phone-user', '+_________');
 // маска для поля "Ваше имя"
 maskName();
 // отправка формы ajax
-sendForm('#form1');
-sendForm('#form2');
+sendForm('#form1', 1);
+sendForm('#form2', 2);
 // аккордеон
 accordion('.panel-heading', '.panel-body');
 // калькулятор

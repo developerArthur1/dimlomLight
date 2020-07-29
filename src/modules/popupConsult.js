@@ -157,7 +157,7 @@ const popupConsult = () => {
             }
             animationPopup('.popup-consultation');
         }
-        else if (!input.value.trim())
+        else if (target.matches('.director-btn') && !input.value.trim())
         {
             input.value = '';
             formQuest.appendChild(statusMessage);
