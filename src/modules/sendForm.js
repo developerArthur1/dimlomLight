@@ -1,8 +1,8 @@
 'use strict';
 
-const sendForm = (index) => {
-    const form = document.getElementById(`form${index}`);
-         const btnSubmit = form.querySelector('button'),
+const sendForm = (selector, elemCount) => {
+    const form = document.querySelector(`${selector}`),
+          btnSubmit = form.querySelector('button'),
           statusMessage = document.createElement('form'),
           successMessage = 'Успешно! С вами скоро свяжутся',
           errorMessage = 'Что-то пошло не так';
@@ -57,7 +57,6 @@ const sendForm = (index) => {
         };
 
         const submit = () => {
-            event.preventDefault();
             statusMessage.textContent = '';
             form.appendChild(statusMessage);
             form.appendChild(preloader);
@@ -77,7 +76,7 @@ const sendForm = (index) => {
             };
     
             const check = () => {
-                if (index === 2)
+                if (elemCount === 2)
                 {
                     if (isEmpty(body) === 2)
                     {

@@ -8,15 +8,16 @@ import calc from './modules/calc';
 import popupCall from './modules/popupCall';
 import btnMore from './modules/btnMore';
 import popupDiscount from './modules/popupDiscount';
+import popupCheck from './modules/popupCheck';
 
 // маска номера телефона
 maskPhone('.phone-user', '+_________');
 // маска для поля "Ваше имя"
 maskName();
 // отправка формы ajax
-sendForm(1);
-sendForm(2);
-sendForm(3);
+sendForm('#form1');
+sendForm('#form2');
+sendForm('#form3');
 // аккордеон
 accordion('.panel-heading', '.panel-body');
 // калькулятор
@@ -25,5 +26,7 @@ calc();
 popupCall();
 // кнопка "Больше"
 btnMore();
-// открытие модалки при клике на кнопкки
+// открытие модалки при клике на кнопки 'заказать со скидкой' и 'узнать цену со скидкой'
 popupDiscount();
+// открытие модалки при клике на кнопку 'получить чек-лист и скидку'
+popupCheck();
