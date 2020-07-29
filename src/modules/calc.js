@@ -3,16 +3,16 @@
 import animationPopup from './animationPopup';
 
 const calc = (event) => {
-    const firstCheckbox = document.querySelector('.onoffswitch'),
+    const firstCheckbox = document.querySelector('.onoffswitch-label'),
           inputFirstCheckbox = document.getElementById('myonoffswitch'),
           secondWellBlock = document.querySelector('.second-well');
 
         
-          firstCheckbox.addEventListener('click', () => {
+        firstCheckbox.addEventListener('click', (event) => {
+            event.preventDefault();
             inputFirstCheckbox.checked = !inputFirstCheckbox.checked;
-            secondWellBlock.classList.toggle('d-none');
-        });
-    
+            secondWellBlock.classList.toggle('d-none');    
+        });    
     
 
     const sendForm = () => {
@@ -178,7 +178,7 @@ const calc = (event) => {
 
     document.addEventListener('click', (event) => {
         const target = event.target;
-        event.preventDefault();
+        
 
         if (target.closest('.call-btn'))
         {
@@ -203,6 +203,7 @@ const calc = (event) => {
                   statusMessage = popup.querySelector('#status-message');
                   statusMessage.textContent = '';
             animationPopup('.popup-discount', 'block');
+            event.preventDefault();
         }
         
         if ((!target.closest('.capture-form') || target.matches('.popup-close')) && !target.matches('.call-btn'))
