@@ -15,13 +15,16 @@ const popupCheck = () => {
         {
             animationPopup('.popup-check');
         }
-        else if (!target.closest('#get-check-list') || target.matches('.popup-close'))
+        else if (!target.closest('.capture-form') || target.matches('.popup-close'))
         {
             const form = document.querySelector('#get-check-list'),
                     statusMessage = form.querySelector('form');
+                    if (statusMessage)
+                    {
+                        statusMessage.textContent = '';
+                    }
 
-                    statusMessage.textContent = '';
-            popup.style.display = 'none';
+                    popup.style.display = 'none';
         }
     });
 };
