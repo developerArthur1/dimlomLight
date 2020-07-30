@@ -2,7 +2,7 @@
 
 import animationPopup from './animationPopup';
 
-const calc = (event) => {
+const calc = () => {
     const firstCheckbox = document.querySelector('.onoffswitch-label'),
           inputFirstCheckbox = document.getElementById('myonoffswitch'),
           secondWellBlock = document.querySelector('.second-well');
@@ -11,6 +11,7 @@ const calc = (event) => {
         firstCheckbox.addEventListener('click', (event) => {
             event.preventDefault();
             inputFirstCheckbox.checked = !inputFirstCheckbox.checked;
+            calculate();
             secondWellBlock.classList.toggle('d-none');    
         });    
     
@@ -170,6 +171,32 @@ const calc = (event) => {
     };
     sendForm();
 
+
+    const calculate = () => {
+        let sum = 0;
+        isPopupCalc = true;
+
+        const checkboxValue = onoffswitchСheckbox.checked ? 10000 : 15000;
+        sum += checkboxValue;
+        const diametrValue = diametr.selectedIndex === 1 ? sum * 20 / 100 : 0;
+        sum += diametrValue;
+        const ringsValue = rings.selectedIndex === 1 ? sum * 30 / 100 : rings.selectedIndex === 2 ? sum * 50 / 100 : 0;
+        sum += ringsValue;
+        const checkboxBottomValue = checkboxBottom.checked ? (onoffswitchСheckbox.checked ? 1000 : 2000) : 0;
+        sum += checkboxBottomValue;
+
+        const secondDiametrValue = onoffswitchСheckbox.checked ? 0: secondDiametr.selectedIndex === 2 ? sum * 30 / 100 : secondDiametr.selectedIndex === 3 ? sum * 50 / 100 : 0,
+              secondRingsValue = onoffswitchСheckbox.checked ? 0: secondRings.selectedIndex === 2 ? sum * 30 / 100 : secondDiametr.selectedIndex === 3 ? sum * 50 / 100 : 0;
+
+        sum += secondDiametrValue + secondRingsValue;
+        calcResult.value = `${sum} рублей`;
+        
+        const popup = document.getElementById('calc-form'),
+              statusMessage = popup.querySelector('#status-message');
+              statusMessage.textContent = '';
+    };
+
+
     const onoffswitchСheckbox = document.querySelector('.onoffswitch-checkbox'),
           diametr = document.querySelector('.diametr'),
           rings = document.querySelector('.rings'),
@@ -179,41 +206,28 @@ const calc = (event) => {
           calcResult = document.getElementById('calc-result'),
           popup = document.querySelector('.popup-discount'),
           accordionBlock = document.getElementById('accord'),
-          accordInputs = accordionBlock.querySelectorAll('input');
+          accordInputs = accordionBlock.querySelectorAll('input'),
+          bottomLabel = document.querySelector('.bottom-label'),
+          bottomInput = document.querySelector('#myonoffswitch-two');
 
           let isPopupCalc = false;
 
+    bottomLabel.addEventListener('click', (event) => {
+        event.preventDefault();
+        bottomInput.checked = !bottomInput.checked;
+        calculate();
+    });
+    
     document.addEventListener('click', (event) => {
+        event.preventDefault();
         const target = event.target;
         
-
         if (target.closest('.call-btn'))
         {
-            let sum = 0;
-            isPopupCalc = true;
-
-            const checkboxValue = onoffswitchСheckbox.checked ? 10000 : 15000;
-            sum += checkboxValue;
-            const diametrValue = diametr.selectedIndex === 1 ? sum * 20 / 100 : 0;
-            sum += diametrValue;
-            const ringsValue = rings.selectedIndex === 1 ? sum * 30 / 100 : rings.selectedIndex === 2 ? sum * 50 / 100 : 0;
-            sum += ringsValue;
-            const checkboxBottomValue = checkboxBottom.checked ? (onoffswitchСheckbox.checked ? 1000 : 2000) : 0;
-            sum += checkboxBottomValue;
-
-            const secondDiametrValue = onoffswitchСheckbox.checked ? 0: secondDiametr.selectedIndex === 2 ? sum * 30 / 100 : secondDiametr.selectedIndex === 3 ? sum * 50 / 100 : 0,
-                  secondRingsValue = onoffswitchСheckbox.checked ? 0: secondRings.selectedIndex === 2 ? sum * 30 / 100 : secondDiametr.selectedIndex === 3 ? sum * 50 / 100 : 0;
-
-            sum += secondDiametrValue + secondRingsValue;
-            calcResult.value = `${sum} рублей`;
-            
-            const popup = document.getElementById('calc-form'),
-                  statusMessage = popup.querySelector('#status-message');
-                  statusMessage.textContent = '';
+            calculate();
             animationPopup('.popup-discount', 'block');
-            event.preventDefault();
         }
-        
+
         if ((!target.closest('.capture-form') || target.matches('.popup-close')) && !target.matches('.call-btn'))
         {
             popup.style.display = 'none';
@@ -222,6 +236,17 @@ const calc = (event) => {
         if (target.matches('.discount-btn'))
         {
             isPopupCalc = false;
+        }
+    });
+
+
+    document.addEventListener('change', (event) => {
+        event.preventDefault();
+        const target = event.target;
+        
+        if (target.closest('.calc-elem'))
+        {
+            calculate();
         }
     });
 };
