@@ -146,6 +146,7 @@ const popupConsult = () => {
 
     
     document.addEventListener('click', (event) => {
+        event.preventDefault();
         const target = event.target;
         
         if (target.matches('.director-btn') && input.value.trim())

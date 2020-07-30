@@ -83,44 +83,49 @@ const calc = (event) => {
                 formPopup.appendChild(preloader);
         
                 const popupData = new FormData(formPopup);
-                let body = {
-                    calc: {
+                
 
-                    },
+                let i = 0;
+
+                let body = {
                     form: {
 
                     }
                 };
-
-                let i = 0;
-                allCalcCheckbox.forEach((val) => {
-                    body.calc[i] = val;
-                    i++;
-                });
-
-                allCalcSelect.forEach((val) => {
-                    if (val.classList.contains('second-well'))
-                    {
-                        if (!inputFirstCheckbox.checked)
+                
+                if (isPopupCalc === true)
+                {
+                    body.calc = {};
+                    
+                    allCalcCheckbox.forEach((val) => {
+                        body.calc[i] = val;
+                        i++;
+                    });
+    
+                    allCalcSelect.forEach((val) => {
+                        if (val.classList.contains('second-well'))
+                        {
+                            if (!inputFirstCheckbox.checked)
+                            {
+                                body.calc[i] = val.value;
+                                i++; 
+                            }
+                        }
+                        else
                         {
                             body.calc[i] = val.value;
-                            i++; 
+                            i++;    
                         }
-                    }
-                    else
-                    {
-                        body.calc[i] = val.value;
-                        i++;    
-                    }
-                });
-
-                allCalcInput.forEach((val) => {
-                    if (val.value.trim())
-                    {
-                        body.calc[i] = val.value;
-                        i++;
-                    }
-                });
+                    });
+    
+                    allCalcInput.forEach((val) => {
+                        if (val.value.trim())
+                        {
+                            body.calc[i] = val.value;
+                            i++;
+                        }
+                    });    
+                }
 
                 popupData.forEach((val, key) => {
                     if (val.trim())
@@ -129,6 +134,8 @@ const calc = (event) => {
                     }
                 });
 
+                console.log('body: ', body);
+                
                 const isEmpty = (obj) => {
                     return Object.keys(obj).length;
                 };
@@ -176,6 +183,8 @@ const calc = (event) => {
           accordionBlock = document.getElementById('accord'),
           accordInputs = accordionBlock.querySelectorAll('input');
 
+          let isPopupCalc = false;
+
     document.addEventListener('click', (event) => {
         const target = event.target;
         
@@ -183,6 +192,7 @@ const calc = (event) => {
         if (target.closest('.call-btn'))
         {
             let sum = 0;
+            isPopupCalc = true;
 
             const checkboxValue = onoffswitchСheckbox.checked ? 10000 : 15000;
             sum += checkboxValue;
@@ -209,6 +219,11 @@ const calc = (event) => {
         if ((!target.closest('.capture-form') || target.matches('.popup-close')) && !target.matches('.call-btn'))
         {
             popup.style.display = 'none';
+        }
+
+        if (target.matches('.discount-btn'))
+        {
+            isPopupCalc = false;
         }
     });
 };
