@@ -84,9 +84,8 @@ const calc = (event) => {
         
                 const popupData = new FormData(formPopup);
                 
-
                 let i = 0;
-
+                
                 let body = {
                     form: {
 
@@ -134,7 +133,6 @@ const calc = (event) => {
                     }
                 });
 
-                console.log('body: ', body);
                 
                 const isEmpty = (obj) => {
                     return Object.keys(obj).length;
